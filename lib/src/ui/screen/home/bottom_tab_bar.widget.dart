@@ -1,6 +1,7 @@
 import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/resources/resource.export.dart';
+import 'package:rxdart/rxdart.dart';
 
 class BottomTabBar extends StatefulWidget {
   const BottomTabBar({Key key}) : super(key: key);
@@ -12,40 +13,13 @@ class BottomTabBar extends StatefulWidget {
 class _BottomTabBarState extends State<BottomTabBar>
     with TickerProviderStateMixin {
   TabController _controller;
-
-  Color _writeColor = Colors.black;
-  Color _listenColor = Colors.grey;
-  Color _mineColor = Colors.grey;
+  Subject<int> _subject;
 
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 3, vsync: this)
-      ..addListener(() {
-        if (!_controller.indexIsChanging) {
-          setState(() {
-            switch (_controller.index) {
-              case 0:
-                _writeColor = Colors.black;
-                _listenColor = Colors.grey;
-                _mineColor = Colors.grey;
-                break;
-              case 1:
-                _writeColor = Colors.grey;
-                _listenColor = Colors.black;
-                _mineColor = Colors.grey;
-                break;
-              case 2:
-                _writeColor = Colors.grey;
-                _listenColor = Colors.grey;
-                _mineColor = Colors.black;
-                break;
-              default:
-                break;
-            }
-          });
-        }
-      });
+    _controller = TabController(length: 3, vsync: this);
+    _subject = BehaviorSubject()..listen(_controller.animateTo);
   }
 
   @override
@@ -63,21 +37,9 @@ class _BottomTabBarState extends State<BottomTabBar>
           controller: _controller,
           indicator: DotTabIndicator(offset: 3 / 4),
           tabs: [
-            IconButton(
-              padding: EdgeInsets.all(20),
-              icon: Icon(D.write, color: _writeColor),
-              onPressed: () => _controller.animateTo(0),
-            ),
-            IconButton(
-              padding: EdgeInsets.all(20),
-              icon: Icon(D.listen, color: _listenColor),
-              onPressed: () => _controller.animateTo(1),
-            ),
-            IconButton(
-              padding: EdgeInsets.all(20),
-              icon: Icon(D.mine, color: _mineColor),
-              onPressed: () => _controller.animateTo(2),
-            ),
+            _Tab(subject: _subject, index: 0, icon: D.write),
+            _Tab(subject: _subject, index: 1, icon: D.listen),
+            _Tab(subject: _subject, index: 2, icon: D.mine),
           ],
         ),
       ),
@@ -87,6 +49,39 @@ class _BottomTabBarState extends State<BottomTabBar>
   @override
   void dispose() {
     _controller.dispose();
+    _subject.close();
     super.dispose();
+  }
+}
+
+class _Tab extends StatelessWidget {
+  const _Tab({
+    Key key,
+    @required Subject<int> subject,
+    @required int index,
+    @required IconData icon,
+  })  : _subject = subject,
+        _index = index,
+        _icon = icon,
+        super(key: key);
+
+  final Subject<int> _subject;
+  final int _index;
+  final IconData _icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      padding: EdgeInsets.all(20),
+      icon: StreamBuilder<int>(
+        stream: _subject.stream,
+        initialData: 0,
+        builder: (context, ss) => Icon(
+              _icon,
+              color: ss.data == _index ? Colors.black : Colors.grey,
+            ),
+      ),
+      onPressed: () => _subject.add(_index),
+    );
   }
 }
