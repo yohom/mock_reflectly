@@ -1,7 +1,12 @@
-import 'package:flutter/material.dart';
+part of 'resource.export.dart';
 
-/// Reflectly的Icon
-class RIcons {
+class D {
+  static get newEntryBg => Image.asset(
+        'images/new-entry-bg.png',
+        fit: BoxFit.cover,
+        color: Colors.white10,
+      );
+  static final faceGif = 'images/reflectly-face.gif';
   static const reallyTerrible = IconData(0xe933, fontFamily: 'ReflectlyIcons');
   static const somewhatBad = IconData(0xe930, fontFamily: 'ReflectlyIcons');
   static const completelyOk = IconData(0xe932, fontFamily: 'ReflectlyIcons');
@@ -38,12 +43,4 @@ class RIcons {
   static const editImage = IconData(0xe94d, fontFamily: 'ReflectlyIcons');
   static const back0 = IconData(0xe904, fontFamily: 'ReflectlyIcons');
   static const back1 = IconData(0xe952, fontFamily: 'ReflectlyIcons');
-}
-
-class Images {
-  static get newEntryBg => Image.asset(
-        'assets/images/new-entry-bg.png',
-        fit: BoxFit.cover,
-        color: Colors.white10,
-      );
 }

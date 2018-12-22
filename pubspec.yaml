@@ -24,6 +24,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - images/
+    - fonts/
   fonts:
     - family: Avenir
       fonts:
@@ -34,11 +37,9 @@ flutter:
           weight: 300
         - asset: fonts/Avenir-Medium.ttf
           weight: 500
-
     - family: ReflectlyIcons
       fonts:
         - asset: fonts/ReflectlyIcons.ttf
-
     - family: Quicksand
       fonts:
         - asset: fonts/Quicksand-Regular.ttf

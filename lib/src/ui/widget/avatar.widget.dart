@@ -1,5 +1,6 @@
 import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:mock_reflectly/src/resources/resource.export.dart';
 
 class Avatar extends StatelessWidget {
   final double width;
@@ -22,7 +23,7 @@ class Avatar extends StatelessWidget {
       spreadRadius: -12.0,
       blurRadius: 24.0,
       child: CircleAvatar(
-        backgroundImage: AssetImage('assets/images/reflectly-face.gif'),
+        backgroundImage: AssetImage(D.faceGif),
       ),
     );
   }

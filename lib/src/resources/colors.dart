@@ -1,4 +1,4 @@
-import 'dart:ui';
+part of 'resource.export.dart';
 
 const kGradientStartColor = Color(0XFF8288E0);
 const kGradientEndColor = Color(0XFF7871C0);

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mock_reflectly/src/resources/drawable.dart';
+import 'package:mock_reflectly/src/resources/resource.export.dart';
 
-///
 /// 心情
-///
 class Mood extends StatelessWidget {
   final double size;
 
@@ -15,7 +13,7 @@ class Mood extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
-      RIcons.happy,
+      D.happy,
       color: Colors.white.withOpacity(0.5),
       size: size,
     );

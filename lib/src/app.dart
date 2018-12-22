@@ -1,7 +1,8 @@
 import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/bloc/bloc.export.dart';
-import 'package:mock_reflectly/src/resources/colors.dart';
+import 'package:mock_reflectly/src/di/injector.dart';
+import 'package:mock_reflectly/src/resources/resource.export.dart';
 import 'package:mock_reflectly/src/ui/screen/home/home.screen.dart';
 
 class MockReflectlyApp extends StatelessWidget {
@@ -11,6 +12,7 @@ class MockReflectlyApp extends StatelessWidget {
       bloc: AppBLoC(),
       child: MaterialApp(
         title: 'Flutter Demo',
+        onGenerateRoute: _onGenerateRoute,
         theme: ThemeData(
           primarySwatch: Colors.blue,
           backgroundColor: kBackgroundColor,
@@ -36,13 +38,25 @@ class MockReflectlyApp extends StatelessWidget {
             valueIndicatorTextStyle: TextStyle(),
           ),
         ),
-        home: Builder(
-          builder: (context) {
-            Global.init(context);
-            return HomeScreen();
-          },
-        ),
       ),
     );
+  }
+}
+
+Route _onGenerateRoute(RouteSettings settings) {
+  final path = parseRoute(settings.name).path;
+  final arguments = parseRoute(settings.name).arguments;
+
+  switch (path) {
+    // 登录, 是根目录'/'
+    case RoutePath.home:
+      return DecoratedRoute<HomeBLoC>(
+        screen: HomeScreen(),
+        bloc: Injector.obtain(),
+        isInitialRoute: true,
+        routeName: path,
+      );
+    default:
+      return DecoratedRoute(screen: UnknownScreen(), routeName: path);
   }
 }

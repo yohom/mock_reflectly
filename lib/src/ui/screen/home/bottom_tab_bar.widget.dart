@@ -1,6 +1,6 @@
 import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:mock_reflectly/src/resources/drawable.dart';
+import 'package:mock_reflectly/src/resources/resource.export.dart';
 
 class BottomTabBar extends StatefulWidget {
   const BottomTabBar({
@@ -38,17 +38,17 @@ class _BottomTabBarState extends State<BottomTabBar>
           tabs: [
             IconButton(
               padding: EdgeInsets.all(kSpaceBig),
-              icon: Icon(RIcons.write, color: Colors.black),
+              icon: Icon(D.write, color: Colors.black),
               onPressed: () => _controller.animateTo(0),
             ),
             IconButton(
               padding: EdgeInsets.all(kSpaceBig),
-              icon: Icon(RIcons.listen, color: Colors.black),
+              icon: Icon(D.listen, color: Colors.black),
               onPressed: () => _controller.animateTo(1),
             ),
             IconButton(
               padding: EdgeInsets.all(kSpaceBig),
-              icon: Icon(RIcons.mine, color: Colors.black),
+              icon: Icon(D.mine, color: Colors.black),
               onPressed: () => _controller.animateTo(2),
             ),
           ],
