@@ -16,4 +16,5 @@ const kSuperAwesome = 'SUPER AWESOME';
 
 class RoutePath {
   static const String home = '/';
+  static const String edit_story = '/edit_story';
 }

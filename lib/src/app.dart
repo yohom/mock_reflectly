@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/bloc/bloc.export.dart';
 import 'package:mock_reflectly/src/di/injector.dart';
 import 'package:mock_reflectly/src/resources/resource.export.dart';
+import 'package:mock_reflectly/src/ui/screen/edit_story/edit_story.screen.dart';
 import 'package:mock_reflectly/src/ui/screen/home/home.screen.dart';
 
 class MockReflectlyApp extends StatelessWidget {
@@ -55,6 +56,13 @@ Route _onGenerateRoute(RouteSettings settings) {
         bloc: Injector.obtain(),
         isInitialRoute: true,
         init: (bloc) => bloc.storyList.update(),
+        routeName: path,
+      );
+    // 编辑Story
+    case RoutePath.edit_story:
+      return DecoratedRoute<EditStoryBLoC>(
+        screen: EditStoryScreen(),
+        bloc: Injector.obtain(),
         routeName: path,
       );
     default:

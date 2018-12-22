@@ -13,7 +13,7 @@ class NewStoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-//      onTap: () => Router.navigate(context, EditStoryScreen()),
+      onTap: () => Navigator.pushNamed(context, RoutePath.edit_story),
       child: ShadowedBox(
         borderRadius: BorderRadius.circular(kCardRadius),
         spreadRadius: -16.0,
@@ -46,7 +46,7 @@ class _Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'NEW_STORY_CARD_TO_EDIT_STORY',
+      tag: NEW_STORY_CARD_TO_EDIT_STORY,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kCardRadius),

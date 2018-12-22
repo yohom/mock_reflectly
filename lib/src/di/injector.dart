@@ -1,12 +1,15 @@
 import 'package:kiwi/kiwi.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:mock_reflectly/src/bloc/bloc.export.dart';
+import 'package:mock_reflectly/src/resources/remote/api.dart';
 
 part 'injector.g.dart';
 
 abstract class Injector {
   @Register.singleton(AppBLoC)
+  @Register.singleton(Api)
   @Register.factory(HomeBLoC)
+  @Register.factory(EditStoryBLoC)
   void common();
 
   static void setup(bool isTest) {
