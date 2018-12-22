@@ -7,13 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fake_reflectly/main.dart';
+import 'package:mock_reflectly/src/app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(MockReflectlyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
