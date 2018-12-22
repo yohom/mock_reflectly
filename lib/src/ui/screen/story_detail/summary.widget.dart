@@ -21,7 +21,7 @@ class Summary extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               StoryDate(storyDate: data.storyDate),
-              StoryTitle(title: data.title),
+              StoryTitle(data.title),
             ],
           ),
         ),

@@ -6,13 +6,11 @@ import 'package:mock_reflectly/src/ui/widget/mood.widget.dart';
 import 'package:mock_reflectly/src/ui/widget/story_date.widget.dart';
 import 'package:mock_reflectly/src/ui/widget/story_title.widget.dart';
 
-const kCardRadius = 12.0;
-
 /// 历史Story对应的Card
-class HistoryStoryCard extends StatelessWidget {
+class HistoryStory extends StatelessWidget {
   final Story story;
 
-  const HistoryStoryCard({
+  const HistoryStory({
     Key key,
     @required this.story,
   }) : super(key: key);
@@ -25,7 +23,7 @@ class HistoryStoryCard extends StatelessWidget {
             context, '${RoutePath.story_detail}?${story.toJsonString()}');
       },
       child: ShadowedBox(
-        borderRadius: BorderRadius.circular(kCardRadius),
+        borderRadius: BorderRadius.circular(Dimens.cardRadius),
         spreadRadius: -16.0,
         blurRadius: 24.0,
         shadowOffset: Offset(0.0, 24.0),
@@ -41,7 +39,7 @@ class HistoryStoryCard extends StatelessWidget {
             Hero(
               tag: story.title,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(kCardRadius),
+                borderRadius: BorderRadius.circular(Dimens.cardRadius),
                 child: ImageWidget(imageUrl: story.storyImage),
               ),
             ),
@@ -51,18 +49,18 @@ class HistoryStoryCard extends StatelessWidget {
               child: StoryDate(storyDate: story.storyDate),
             ),
             Positioned(
-              right: 24.0,
+              right: 16.0,
               top: 24.0,
               child: _Favorite(),
             ),
             Positioned(
               left: 24.0,
-              bottom: 24.0,
-              child: StoryTitle(title: story.title),
+              bottom: 36.0,
+              child: StoryTitle(story.title),
             ),
             Positioned(
               right: -16.0,
-              bottom: 24.0,
+              bottom: 16.0,
               child: Mood(),
             ),
           ],
@@ -72,9 +70,6 @@ class HistoryStoryCard extends StatelessWidget {
   }
 }
 
-///
-/// 是否favorite
-///
 class _Favorite extends StatelessWidget {
   const _Favorite({
     Key key,

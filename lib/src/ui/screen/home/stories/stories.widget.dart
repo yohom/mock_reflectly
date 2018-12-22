@@ -2,18 +2,13 @@ import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/bloc/bloc.export.dart';
 import 'package:mock_reflectly/src/models/bean.export.dart';
-import 'package:mock_reflectly/src/ui/screen/home/stories/history_story_card.widget.dart';
+import 'package:mock_reflectly/src/ui/screen/home/stories/history_story.widget.dart';
 import 'package:mock_reflectly/src/ui/screen/home/stories/intro.widget.dart';
-import 'package:mock_reflectly/src/ui/screen/home/stories/new_story_card.widget.dart';
+import 'package:mock_reflectly/src/ui/screen/home/stories/new_story.widget.dart';
 
-class Stories extends StatefulWidget {
+class Stories extends StatelessWidget {
   const Stories({Key key}) : super(key: key);
 
-  @override
-  _StoriesState createState() => _StoriesState();
-}
-
-class _StoriesState extends State<Stories> {
   @override
   Widget build(BuildContext context) {
     final bloc = BLoCProvider.of<HomeBLoC>(context);
@@ -37,7 +32,7 @@ class _StoryPageView extends StatefulWidget {
 }
 
 class _StoryListState extends State<_StoryPageView> {
-  final _controller = PageController(viewportFraction: 0.8);
+  final _controller = PageController(viewportFraction: 0.9);
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +69,8 @@ class _StoryListState extends State<_StoryPageView> {
             );
           },
           child: index == 1
-              ? NewStoryCard()
-              : HistoryStoryCard(story: widget.storyList[index - 2]),
+              ? NewStory()
+              : HistoryStory(story: widget.storyList[index - 2]),
         );
       },
     );

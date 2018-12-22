@@ -1,6 +1,6 @@
 import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:mock_reflectly/src/ui/screen/home/back_to_index.widget.dart';
+import 'package:mock_reflectly/src/ui/screen/home/back_to_intro.widget.dart';
 import 'package:mock_reflectly/src/ui/screen/home/bottom_tab_bar.widget.dart';
 import 'package:mock_reflectly/src/ui/screen/home/stories/stories.widget.dart';
 import 'package:mock_reflectly/src/ui/widget/avatar.widget.dart';
@@ -26,7 +26,10 @@ class HomeScreen extends StatelessWidget {
           BottomTabBar(),
           Align(
             alignment: AlignmentDirectional.topStart,
-            child: BackToIndex(),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BackToIntro(),
+            ),
           ),
         ],
       ),

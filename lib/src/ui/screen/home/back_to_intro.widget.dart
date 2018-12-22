@@ -4,8 +4,8 @@ import 'package:mock_reflectly/src/bloc/local/home.bloc.dart';
 import 'package:mock_reflectly/src/models/bean.export.dart';
 import 'package:mock_reflectly/src/resources/resource.export.dart';
 
-class BackToIndex extends StatelessWidget {
-  const BackToIndex({Key key}) : super(key: key);
+class BackToIntro extends StatelessWidget {
+  const BackToIntro({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

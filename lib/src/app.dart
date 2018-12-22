@@ -17,6 +17,7 @@ class MockReflectlyApp extends StatelessWidget {
         title: 'Flutter Demo',
         onGenerateRoute: _onGenerateRoute,
         theme: ThemeData(
+          platform: TargetPlatform.iOS,
           primarySwatch: Colors.blue,
           backgroundColor: kBackgroundColor,
           primaryColor: kColorPrimary,

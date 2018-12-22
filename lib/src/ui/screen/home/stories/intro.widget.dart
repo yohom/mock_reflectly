@@ -2,9 +2,7 @@ import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/ui/widget/fonted_text.dart';
 
-///
 /// Page的第一页
-///
 class Intro extends StatelessWidget {
   const Intro({Key key}) : super(key: key);
 
@@ -40,11 +38,8 @@ class Intro extends StatelessWidget {
   }
 }
 
-/// 分割线
 class _Divider extends StatelessWidget {
-  const _Divider({
-    Key key,
-  }) : super(key: key);
+  const _Divider({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

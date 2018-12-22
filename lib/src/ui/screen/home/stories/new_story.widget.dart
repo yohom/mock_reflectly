@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/resources/resource.export.dart';
 import 'package:mock_reflectly/src/ui/widget/fonted_text.dart';
 
-const kCardRadius = 12.0;
-
-class NewStoryCard extends StatelessWidget {
-  const NewStoryCard({
+class NewStory extends StatelessWidget {
+  const NewStory({
     Key key,
   }) : super(key: key);
 
@@ -15,7 +13,7 @@ class NewStoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, RoutePath.edit_story),
       child: ShadowedBox(
-        borderRadius: BorderRadius.circular(kCardRadius),
+        borderRadius: BorderRadius.circular(Dimens.cardRadius),
         spreadRadius: -16.0,
         blurRadius: 24.0,
         shadowColor: Theme.of(context).primaryColor,
@@ -39,7 +37,6 @@ class NewStoryCard extends StatelessWidget {
   }
 }
 
-/// 背景
 class _Background extends StatelessWidget {
   const _Background({Key key}) : super(key: key);
 
@@ -49,7 +46,7 @@ class _Background extends StatelessWidget {
       tag: NEW_STORY_CARD_TO_EDIT_STORY,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kCardRadius),
+          borderRadius: BorderRadius.circular(Dimens.cardRadius),
           gradient: LinearGradient(
             colors: [kGradientStartColor, kGradientEndColor],
             begin: Alignment.topCenter,
@@ -61,7 +58,6 @@ class _Background extends StatelessWidget {
   }
 }
 
-/// 新增story的图标和文字
 class _Action extends StatelessWidget {
   const _Action({Key key}) : super(key: key);
 
@@ -70,14 +66,10 @@ class _Action extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Icon(
-          D.addNewStory,
-          color: Colors.white,
-          size: 100.0,
-        ),
+        Icon(D.addNewStory, color: Colors.white, size: 100.0),
         SPACE_BIG,
         AvenirText(
-          'ADD NEW STORY',
+          S.addNewStory,
           style: TextStyle(
             color: Colors.white.withOpacity(0.6),
             fontWeight: FontWeight.w500,
