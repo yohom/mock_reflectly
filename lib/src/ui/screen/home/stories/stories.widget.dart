@@ -32,7 +32,7 @@ class _StoryPageView extends StatefulWidget {
 }
 
 class _StoryListState extends State<_StoryPageView> {
-  final _controller = PageController(viewportFraction: 0.9);
+  final _controller = PageController(viewportFraction: 0.8);
 
   @override
   Widget build(BuildContext context) {

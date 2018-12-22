@@ -13,10 +13,39 @@ class _BottomTabBarState extends State<BottomTabBar>
     with TickerProviderStateMixin {
   TabController _controller;
 
+  Color _writeColor = Colors.black;
+  Color _listenColor = Colors.grey;
+  Color _mineColor = Colors.grey;
+
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 3, vsync: this);
+    _controller = TabController(length: 3, vsync: this)
+      ..addListener(() {
+        if (!_controller.indexIsChanging) {
+          setState(() {
+            switch (_controller.index) {
+              case 0:
+                _writeColor = Colors.black;
+                _listenColor = Colors.grey;
+                _mineColor = Colors.grey;
+                break;
+              case 1:
+                _writeColor = Colors.grey;
+                _listenColor = Colors.black;
+                _mineColor = Colors.grey;
+                break;
+              case 2:
+                _writeColor = Colors.grey;
+                _listenColor = Colors.grey;
+                _mineColor = Colors.black;
+                break;
+              default:
+                break;
+            }
+          });
+        }
+      });
   }
 
   @override
@@ -32,21 +61,21 @@ class _BottomTabBarState extends State<BottomTabBar>
         top: false,
         child: TabBar(
           controller: _controller,
-          indicator: DotTabIndicator(),
+          indicator: DotTabIndicator(offset: 3 / 4),
           tabs: [
             IconButton(
-              padding: EdgeInsets.all(kSpaceBig),
-              icon: Icon(D.write, color: Colors.black),
+              padding: EdgeInsets.all(20),
+              icon: Icon(D.write, color: _writeColor),
               onPressed: () => _controller.animateTo(0),
             ),
             IconButton(
-              padding: EdgeInsets.all(kSpaceBig),
-              icon: Icon(D.listen, color: Colors.black),
+              padding: EdgeInsets.all(20),
+              icon: Icon(D.listen, color: _listenColor),
               onPressed: () => _controller.animateTo(1),
             ),
             IconButton(
-              padding: EdgeInsets.all(kSpaceBig),
-              icon: Icon(D.mine, color: Colors.black),
+              padding: EdgeInsets.all(20),
+              icon: Icon(D.mine, color: _mineColor),
               onPressed: () => _controller.animateTo(2),
             ),
           ],
