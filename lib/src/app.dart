@@ -54,6 +54,7 @@ Route _onGenerateRoute(RouteSettings settings) {
         screen: HomeScreen(),
         bloc: Injector.obtain(),
         isInitialRoute: true,
+        init: (bloc) => bloc.storyList.update(),
         routeName: path,
       );
     default:

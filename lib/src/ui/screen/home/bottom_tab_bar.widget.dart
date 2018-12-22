@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/resources/resource.export.dart';
 
 class BottomTabBar extends StatefulWidget {
-  const BottomTabBar({
-    Key key,
-  }) : super(key: key);
+  const BottomTabBar({Key key}) : super(key: key);
 
   @override
   _BottomTabBarState createState() => _BottomTabBarState();
