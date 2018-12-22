@@ -1,15 +1,14 @@
 import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/models/bean.export.dart';
+import 'package:mock_reflectly/src/resources/resource.export.dart';
 import 'package:mock_reflectly/src/ui/widget/mood.widget.dart';
 import 'package:mock_reflectly/src/ui/widget/story_date.widget.dart';
 import 'package:mock_reflectly/src/ui/widget/story_title.widget.dart';
 
 const kCardRadius = 12.0;
 
-///
 /// 历史Story对应的Card
-///
 class HistoryStoryCard extends StatelessWidget {
   final Story story;
 
@@ -22,7 +21,8 @@ class HistoryStoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-//        Router.navigate(context, StoryDetailScreen(story: story));
+        Navigator.pushNamed(
+            context, '${RoutePath.story_detail}?${story.toJsonString()}');
       },
       child: ShadowedBox(
         borderRadius: BorderRadius.circular(kCardRadius),

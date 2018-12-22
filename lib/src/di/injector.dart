@@ -10,6 +10,7 @@ abstract class Injector {
   @Register.singleton(Api)
   @Register.factory(HomeBLoC)
   @Register.factory(EditStoryBLoC)
+  @Register.factory(StoryDetailBLoC)
   void common();
 
   static void setup(bool isTest) {

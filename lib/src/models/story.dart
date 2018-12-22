@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:mock_reflectly/src/utils/times.dart';
 
 class Story {
@@ -44,6 +46,8 @@ class Story {
     data['hero'] = this.hero;
     return data;
   }
+
+  String toJsonString() => jsonEncode(toJson());
 
   @override
   String toString() {

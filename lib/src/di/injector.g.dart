@@ -13,5 +13,6 @@ class _$Injector extends Injector {
     container.registerSingleton((c) => Api());
     container.registerFactory((c) => HomeBLoC());
     container.registerFactory((c) => EditStoryBLoC());
+    container.registerFactory((c) => StoryDetailBLoC());
   }
 }

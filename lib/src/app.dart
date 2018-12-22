@@ -2,9 +2,11 @@ import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/bloc/bloc.export.dart';
 import 'package:mock_reflectly/src/di/injector.dart';
+import 'package:mock_reflectly/src/models/bean.export.dart';
 import 'package:mock_reflectly/src/resources/resource.export.dart';
 import 'package:mock_reflectly/src/ui/screen/edit_story/edit_story.screen.dart';
 import 'package:mock_reflectly/src/ui/screen/home/home.screen.dart';
+import 'package:mock_reflectly/src/ui/screen/story_detail/story_detail.screen.dart';
 
 class MockReflectlyApp extends StatelessWidget {
   @override
@@ -45,10 +47,9 @@ class MockReflectlyApp extends StatelessWidget {
 }
 
 Route _onGenerateRoute(RouteSettings settings) {
-  final path = parseRoute(settings.name).path;
-  final arguments = parseRoute(settings.name).arguments;
+  final routeInfo = parseJsonRoute(settings.name);
 
-  switch (path) {
+  switch (routeInfo.path) {
     // 登录, 是根目录'/'
     case RoutePath.home:
       return DecoratedRoute<HomeBLoC>(
@@ -56,16 +57,26 @@ Route _onGenerateRoute(RouteSettings settings) {
         bloc: Injector.obtain(),
         isInitialRoute: true,
         init: (bloc) => bloc.storyList.update(),
-        routeName: path,
+        routeName: routeInfo.path,
       );
     // 编辑Story
     case RoutePath.edit_story:
       return DecoratedRoute<EditStoryBLoC>(
         screen: EditStoryScreen(),
         bloc: Injector.obtain(),
-        routeName: path,
+        routeName: routeInfo.path,
+      );
+    // Story详情
+    case RoutePath.story_detail:
+      return DecoratedRoute<StoryDetailBLoC>(
+        screen: StoryDetailScreen(),
+        bloc: Injector.obtain(),
+        init: (bloc) {
+          bloc.data = Story.fromJson(routeInfo.arguments);
+        },
+        routeName: routeInfo.path,
       );
     default:
-      return DecoratedRoute(screen: UnknownScreen(), routeName: path);
+      return DecoratedRoute(screen: UnknownScreen(), routeName: routeInfo.path);
   }
 }
