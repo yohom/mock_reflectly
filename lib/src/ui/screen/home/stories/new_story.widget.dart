@@ -4,9 +4,7 @@ import 'package:mock_reflectly/src/resources/resource.export.dart';
 import 'package:mock_reflectly/src/ui/widget/fonted_text.dart';
 
 class NewStory extends StatelessWidget {
-  const NewStory({
-    Key key,
-  }) : super(key: key);
+  const NewStory({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

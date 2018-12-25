@@ -2,6 +2,7 @@ import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mock_reflectly/src/bloc/bloc.export.dart';
 import 'package:mock_reflectly/src/models/bean.export.dart';
+import 'package:mock_reflectly/src/ui/screen/home/snap_page_view.widget.dart';
 import 'package:mock_reflectly/src/ui/screen/home/stories/history_story.widget.dart';
 import 'package:mock_reflectly/src/ui/screen/home/stories/intro.widget.dart';
 import 'package:mock_reflectly/src/ui/screen/home/stories/new_story.widget.dart';
@@ -49,7 +50,7 @@ class _StoryListState extends State<_StoryPageView> {
       );
     });
 
-    return PageView.builder(
+    return SnapPageView.builder(
       controller: _controller,
       onPageChanged: (page) => bloc.pageChange.add(PageChange(page)),
       itemCount: widget.storyList.length + 2,
